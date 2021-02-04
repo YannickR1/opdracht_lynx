@@ -1,0 +1,87 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+$border-radius: 20px;
+$mobile-min-size: 44px;
+$max-width: 1800px;
+
+$line-height: 1.4;
+
+$color-grey-light: #e7e7e7;
+$color-gold: hsl(44, 32.4%, 39%);
+$color-green: hsl(177, 87.7%, 27%);
+$color-white: white;
+
+$font-scale: 1.2;
+$font-size: 1em;
+$font-size-1: $font-size * $font-scale;
+$font-size-2: $font-size-1 * $font-scale;
+$font-size-3: $font-size-2 * $font-scale;
+$font-size-4: $font-size-3 * $font-scale;
+$font-size-5: $font-size-4 * $font-scale;
+$font-size-6: $font-size-5 * $font-scale;
+$font-size-7: $font-size-6 * $font-scale;
+$font-size-8: $font-size-7 * $font-scale;
+
+$text-shadow: 1px 1px 2px black;
+
+@mixin box-shadow {
+  box-shadow: 0 3px 19.7px rgba(0, 0, 0, 0.014),
+    0 5.5px 26.4px rgba(0, 0, 0, 0.023), 0 8.2px 30.6px rgba(0, 0, 0, 0.03),
+    0 11.8px 35.6px rgba(0, 0, 0, 0.037), 0 17.2px 45.4px rgba(0, 0, 0, 0.044),
+    0 27px 80px rgba(0, 0, 0, 0.06);
+}
+
+@mixin box-shadow-small {
+  box-shadow: 0 3px 19.7px rgba(0, 0, 0, 0.014),
+    0 5.5px 26.4px rgba(0, 0, 0, 0.023), 0 8.2px 30.6px rgba(0, 0, 0, 0.03),
+    0 11.8px 35.6px rgba(0, 0, 0, 0.037);
+}
+
+@mixin container {
+  max-width: $max-width;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@mixin latin-name {
+  font-style: italic;
+}
+
+@mixin title {
+  font-size: $font-size-6;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: white;
+}
+
+@mixin section {
+  padding: 4em;
+
+  &__container {
+    @include container;
+  }
+  &__title {
+    @include title;
+  }
+}
+
+$theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),
+  url("img/hero-bg.png");
+
+
+@media screen and (min-width: 450px){
+  
+
+}
