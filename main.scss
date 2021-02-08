@@ -77,28 +77,12 @@ $text-shadow: 1px 1px 2px black;
   }
 }
 
-$theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),
-  url("img/hero-bg.png");
-
-
-@media screen and (max-width: 450px){
-  .species-item__latin {
-    visibility: hidden;
-  }
-}
-
-body{
-  margin: 0 auto;
-}
-
-
+$theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/hero-bg.png");
 
 .hero{
-  background-color: red;
-  padding: 5em;
+  background-image: $theme-bg;
+  padding: 1em;
   &__line{
-    max-width: 75%;
-    min-height: 250px;
     
   }
   
@@ -114,6 +98,7 @@ body{
     font-size: 3em;
     top: -.6ch;
     left: -.4ch;
+    font-variant: small-caps;
   }
 
   &__latin{
@@ -125,8 +110,256 @@ body{
   }
 
   &__img{
-    background-image: $theme-bg;
+    
     filter: drop-shadow(5px 5px 5px darken($color-green,15%));
     object-fit: contain;
+  }
+}
+
+.species{
+  max-width: $max-width;
+  margin: 0 auto;
+  &__title{
+    color: $color-gold;
+    font-size: $font-size-8;
+  }
+
+  &__list{
+
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.species-item{
+  margin: 2em 2em 2 em 0em;
+  display: flex;
+  flex-basis: 300px;
+  border-radius: $border-radius;
+  @include box-shadow();
+  overflow: hidden;
+  
+  &__img{
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+  }
+
+  &__header{
+    margin-bottom: 1.5em;
+  }
+
+
+  &__title{
+    font-size: $font-size-3;
+    color: $color-green;
+
+  }
+  &__latin{
+    color: $color-gold;
+  }
+
+  &__description{
+    line-height: $line-height;
+    margin-bottom: 2em;
+  }
+
+  &__footer{
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    border-top: 2px solid rgba($color-gold, .25);
+
+    &__info{
+      display: flex;
+      margin: .5em;
+      &__icon{
+        margin-right: .25em ;
+        color: $color-green;
+      }
+    }
+  }
+
+
+}
+
+
+
+.support{
+  height: 55vw;
+  background: linear-gradient(110deg, rgba(black,.5) 400px, rgba(black, .10) 800px), url('img/support-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &__description{
+    width: 400px;
+    padding: 2em;
+    color: $color-white;
+    line-height: $line-height;
+    font-size: $font-size-2;
+
+  }
+
+  &__title{
+    font-size: $font-size-8;
+    text-shadow: $text-shadow;
+    color: $color-white;
+  }
+  &__description{
+    text-shadow: $text-shadow;
+  }
+
+  &__adopt{
+    color:$color-green;
+    padding: .5em 1em;
+    background-color: $color-white;
+    border-radius: $border-radius;
+    font-size: $font-size;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+.life{
+  &__title{
+    color: $color-gold;
+    font-size: $font-size-8;
+  }
+  &__list{
+    display: grid;
+    margin: 1em;
+    grid-template-columns: 1fr;
+  }
+}
+
+.life-card{
+  position: relative;
+  @include box-shadow-small();
+  border-radius: $border-radius;
+  height: 200px;
+  padding: 2em;
+  margin: 1em;
+
+  &__title{
+    padding: 1em 1em 1em 0;
+    font-size: $font-size-3;
+    color: $color-green;
+  }
+  &__title::before{
+    content: "—";
+    left: 1.1em;
+    top: 1em;
+    position: absolute;
+    color: $color-gold;
+  }
+
+  &__title::after{
+    content: "⟶";
+    bottom: 1em;
+    right: 1em;
+    position: absolute;
+    
+    font-size: $font-size-2;
+    color: $color-gold;
+  }
+
+}
+
+.footer{
+  background-image: $theme-bg;
+  padding: 3em;
+  color: $color-white;
+
+  &__title{
+    font-size: $font-size-5;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  &__content{
+    margin-bottom: 1em;
+
+    &__info{
+      margin-top: .5em;
+    }
+  }
+}
+
+@media screen and (max-width: 450px){
+  .species-item__latin {
+    visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .species-item{
+    &__footer{
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1749px){
+  .species-item{
+    &__footer{
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+
+@media screen and (min-width: 800px){
+  .species-item{
+    flex-basis: 600px;
+    &__img{
+      width: 50%;
+      max-width: 400px;
+      height: 100%;
+
+    }
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1299px) and (min-width:1749px){
+  .species-item{
+    &__footer{
+      &__info::after{
+        content: "•";
+        margin: 1em;
+        color: $color-gold;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1750px){
+  .species-item{
+    &__img{
+      max-width: 320px;
+    }
+  }
+}
+
+@media screen and (min-width:600px){
+
+.species-item{
+  &__list{
+    flex-direction: column;
+  }
+}
+
+  .life {
+    &__list{
+      grid-template-columns: 1fr 1fr;
+    }
   }
 }
