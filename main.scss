@@ -81,7 +81,54 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),
   url("img/hero-bg.png");
 
 
-@media screen and (min-width: 450px){
-  
+@media screen and (max-width: 450px){
+  .species-item__latin {
+    visibility: hidden;
+  }
+}
 
+body{
+  margin: 0 auto;
+}
+
+
+
+.hero{
+  background-color: red;
+  padding: 5em;
+  &__line{
+    max-width: 75%;
+    min-height: 250px;
+    
+  }
+  
+  &__line::before{
+    content: " ";
+  }
+  &__line::after{
+    content: " ";
+  }
+  &__name{
+    color: $color-white;
+    text-shadow: $text-shadow;
+    font-size: 3em;
+    top: -.6ch;
+    left: -.4ch;
+  }
+
+  &__latin{
+    top: -.3ch;
+    left: -.4ch;
+    font-size: $font-size-2;
+    text-shadow: $text-shadow;
+    color: $color-white;
+  }
+
+  &__img{
+    background-image: $theme-bg;
+    filter: drop-shadow(5px 5px 5px darken($color-green,15%));
+    object-fit: contain;
+    
+
+  }
 }
