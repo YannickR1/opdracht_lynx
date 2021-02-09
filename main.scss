@@ -133,7 +133,7 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
 }
 
 .species-item{
-  margin: 2em 2em 2 em 0em;
+  margin: 1em;
   display: flex;
   flex-basis: 300px;
   border-radius: $border-radius;
@@ -190,7 +190,6 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
 }
 
 
-
 .support{
   height: 55vw;
   background: linear-gradient(110deg, rgba(black,.5) 400px, rgba(black, .10) 800px), url('img/support-bg.jpg');
@@ -204,7 +203,6 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
     color: $color-white;
     line-height: $line-height;
     font-size: $font-size-2;
-
   }
 
   &__title{
@@ -217,7 +215,7 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
   }
 
   &__adopt{
-    color:$color-green;
+    color: $color-green;
     padding: .5em 1em;
     background-color: $color-white;
     border-radius: $border-radius;
