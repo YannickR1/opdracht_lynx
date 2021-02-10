@@ -20,12 +20,46 @@ body {
   padding: 1em;
 }
 
+.hero__container {
+  margin: 4em;
+}
+
+.hero__container::after {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  background-color: white;
+}
+
+.hero__line {
+  position: relative;
+  max-width: 75%;
+  min-height: 250px;
+  margin: 0 auto;
+}
+
 .hero__line::before {
   content: " ";
+  position: absolute;
+  background-color: white;
+  width: 10px;
+  height: 100%;
+  bottom: 0;
+  left: 4em;
+  -webkit-transform: calc(100% - 30ch);
+          transform: calc(100% - 30ch);
 }
 
 .hero__line::after {
   content: " ";
+  position: absolute;
+  background-color: white;
+  width: 10px;
+  bottom: 0;
+  right: 4em;
+  -webkit-transform: calc(100% - 12ch);
+          transform: calc(100% - 12ch);
 }
 
 .hero__name {
@@ -50,6 +84,12 @@ body {
           filter: drop-shadow(5px 5px 5px #043937);
   -o-object-fit: contain;
      object-fit: contain;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .species {

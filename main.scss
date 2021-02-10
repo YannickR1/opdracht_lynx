@@ -82,16 +82,51 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
 .hero{
   background-image: $theme-bg;
   padding: 1em;
+
+  &__container{
+    margin: 4em;
+  }
+
+  &__container::after{
+    //-4em
+    //- font-size-2
+    transform:rotate(-90deg);
+    transform-origin: 0% 0%; 
+    //- .5em
+    background-color: $color-white;
+    //- 2em
+  }
+
   &__line{
+    position: relative;
+    max-width: 75%;
+    min-height: 250px;
+    margin: 0 auto;
+
+
+  &::before{
+    content: " ";
+    position: absolute;
+    background-color: $color-white;
+    width: 10px;
+
+    height: 100%;
+    bottom: 0;
+    left: 4em ; 
+    transform: calc(100% - 30ch);
+  }
+  &::after{
+    content: " ";
+    position: absolute;
+    background-color: $color-white;
+    width: 10px;
+    bottom: 0;
+    right: 4em;
+    transform: calc(100% - 12ch);
+  }
     
   }
-  
-  &__line::before{
-    content: " ";
-  }
-  &__line::after{
-    content: " ";
-  }
+
   &__name{
     color: $color-white;
     text-shadow: $text-shadow;
@@ -110,9 +145,10 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
   }
 
   &__img{
-    
     filter: drop-shadow(5px 5px 5px darken($color-green,15%));
     object-fit: contain;
+    display: flex;
+    justify-content: center;
   }
 }
 
