@@ -37,15 +37,12 @@ $font-size-8: $font-size-7 * $font-scale;
 $text-shadow: 1px 1px 2px black;
 
 @mixin box-shadow {
-  box-shadow: 0 3px 19.7px rgba(0, 0, 0, 0.014),
-    0 5.5px 26.4px rgba(0, 0, 0, 0.023), 0 8.2px 30.6px rgba(0, 0, 0, 0.03),
-    0 11.8px 35.6px rgba(0, 0, 0, 0.037), 0 17.2px 45.4px rgba(0, 0, 0, 0.044),
-    0 27px 80px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 3px 19.7px rgba(0, 0, 0, 0.014), 0 5.5px 26.4px rgba(0, 0, 0, 0.023), 0 8.2px 30.6px rgba(0, 0, 0, 0.03),
+    0 11.8px 35.6px rgba(0, 0, 0, 0.037), 0 17.2px 45.4px rgba(0, 0, 0, 0.044), 0 27px 80px rgba(0, 0, 0, 0.06);
 }
 
 @mixin box-shadow-small {
-  box-shadow: 0 3px 19.7px rgba(0, 0, 0, 0.014),
-    0 5.5px 26.4px rgba(0, 0, 0, 0.023), 0 8.2px 30.6px rgba(0, 0, 0, 0.03),
+  box-shadow: 0 3px 19.7px rgba(0, 0, 0, 0.014), 0 5.5px 26.4px rgba(0, 0, 0, 0.023), 0 8.2px 30.6px rgba(0, 0, 0, 0.03),
     0 11.8px 35.6px rgba(0, 0, 0, 0.037);
 }
 
@@ -77,163 +74,171 @@ $text-shadow: 1px 1px 2px black;
   }
 }
 
-$theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/hero-bg.png");
+$theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)), url("img/hero-bg.png");
 
-.hero{
+.hero {
+  @include section();
   background-image: $theme-bg;
-  padding: 1em;
 
-  &__container{
-    margin: 4em;
+  &__container {
+    position: relative;
+    &::after {
+      content: "⟵ Read more";
+      position: absolute;
+      right: -4em;
+      bottom: 2em;
+      font-size: $font-size-2;
+      transform: rotate(-90deg);
+      transform-origin: 0% 0%;
+      //- .5em
+      color: $color-white;
+    }
   }
 
-  &__container::after{
-    //-4em
-    //- font-size-2
-    transform:rotate(-90deg);
-    transform-origin: 0% 0%; 
-    //- .5em
-    background-color: $color-white;
-    //- 2em
-  }
-
-  &__line{
+  &__line {
     position: relative;
     max-width: 75%;
     min-height: 250px;
     margin: 0 auto;
-
-
-  &::before{
-    content: " ";
-    position: absolute;
-    background-color: $color-white;
-    width: 10px;
-
-    height: 100%;
-    bottom: 0;
-    left: 4em ; 
-    transform: calc(100% - 30ch);
+    &::before {
+      content: "";
+      background-color: $color-white;
+      width: 0;
+      height: 100%;
+    }
+    &::before {
+      content: " ";
+      position: absolute;
+      background-color: $color-white;
+      width: 100%;
+      height: 0;
+      translate: calc(100% - 30ch);
+    }
+    &::after {
+      content: " ";
+      position: absolute;
+      background-color: $color-white;
+      width: 100%;
+      height: 0;
+      translate: calc(100% - 12ch);
+    }
   }
-  &::after{
-    content: " ";
-    position: absolute;
-    background-color: $color-white;
-    width: 10px;
-    bottom: 0;
-    right: 4em;
-    transform: calc(100% - 12ch);
-  }
-    
-  }
 
-  &__name{
+  &__name {
     color: $color-white;
     text-shadow: $text-shadow;
     font-size: 3em;
-    top: -.6ch;
-    left: -.4ch;
+    font-weight: bold;
+    top: -0.6ch;
+    left: -0.4ch;
     font-variant: small-caps;
   }
 
-  &__latin{
-    top: -.3ch;
-    left: -.4ch;
+  &__latin {
+    @include latin-name();
+    top: -0.3ch;
+    left: -0.4ch;
     font-size: $font-size-2;
     text-shadow: $text-shadow;
     color: $color-white;
   }
 
-  &__img{
-    filter: drop-shadow(5px 5px 5px darken($color-green,15%));
+  &__img {
+    filter: drop-shadow(5px 5px 5px darken($color-green, 15%));
     object-fit: contain;
+    max-width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center
   }
 }
 
-.species{
-  max-width: $max-width;
+.species {
+  @include section();
   margin: 0 auto;
-  &__title{
+  max-width: $max-width;
+  &__title {
     color: $color-gold;
     font-size: $font-size-8;
   }
 
-  &__list{
-
-
+  &__list {
     display: flex;
-    flex-wrap: wrap;
+    margin: -1em;
   }
 }
 
-.species-item{
+.species-item {
+  @include box-shadow();
+  border-radius: $border-radius;
+  flex-basis: 300px;
+  overflow: hidden;
+
   margin: 1em;
   display: flex;
-  flex-basis: 300px;
-  border-radius: $border-radius;
-  @include box-shadow();
-  overflow: hidden;
-  
-  &__img{
+  flex-direction: column;
+
+  &__img {
     flex-shrink: 0;
     object-fit: cover;
+    width: 50%;
+    max-width: 400px;
   }
 
-  &__content{
+  &__content {
+    padding: 2em;
+    margin-bottom: 0.25em;
+
     display: flex;
     flex-direction: column;
-    padding: 2em;
+    justify-content: space-between;
   }
 
-  &__header{
+  &__header {
     margin-bottom: 1.5em;
   }
 
-
-  &__title{
+  &__title {
     font-size: $font-size-3;
     color: $color-green;
-
   }
-  &__latin{
+  &__latin {
+    @include latin-name();
     color: $color-gold;
   }
 
-  &__description{
+  &__description {
     line-height: $line-height;
     margin-bottom: 2em;
   }
 
-  &__footer{
+  &__footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 1em;
-    border-top: 2px solid rgba($color-gold, .25);
-
-    &__info{
+    border-top: 2px solid rgba($color-gold, 0.25);
+    &__info {
       display: flex;
-      margin: .5em;
-      &__icon{
-        margin-right: .25em ;
+      margin: 0.5em;
+      &__icon {
+        // 2em
+        margin-right: 0.25em;
         color: $color-green;
       }
     }
   }
-
-
 }
 
-
-.support{
+.support {
+  @include section();
   height: 55vw;
-  background: linear-gradient(110deg, rgba(black,.5) 400px, rgba(black, .10) 800px), url('img/support-bg.jpg');
+  background: linear-gradient(110deg, rgba(black, 0.5) 400px, rgba(black, 0.1) 800px), url("img/support-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  &__description{
+  &__description {
     width: 400px;
     padding: 2em;
     color: $color-white;
@@ -241,18 +246,18 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
     font-size: $font-size-2;
   }
 
-  &__title{
+  &__title {
     font-size: $font-size-8;
     text-shadow: $text-shadow;
     color: $color-white;
   }
-  &__description{
+  &__description {
     text-shadow: $text-shadow;
   }
 
-  &__adopt{
+  &__adopt {
     color: $color-green;
-    padding: .5em 1em;
+    padding: 0.5em 1em;
     background-color: $color-white;
     border-radius: $border-radius;
     font-size: $font-size;
@@ -261,19 +266,21 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
   }
 }
 
-.life{
-  &__title{
+.life {
+  @include section();
+
+  &__title {
     color: $color-gold;
     font-size: $font-size-8;
   }
-  &__list{
+  &__list {
     display: grid;
     margin: 1em;
     grid-template-columns: 1fr;
   }
 }
 
-.life-card{
+.life-card {
   position: relative;
   @include box-shadow-small();
   border-radius: $border-radius;
@@ -281,119 +288,120 @@ $theme-bg: linear-gradient(110deg, rgba(black, 0.5), rgba(black, 0.1)),url("img/
   padding: 2em;
   margin: 1em;
 
-  &__title{
+  &__title {
     padding: 1em 1em 1em 0;
     font-size: $font-size-3;
     color: $color-green;
-  }
-  &__title::before{
-    content: "—";
-    left: 1.1em;
-    top: 1em;
-    position: absolute;
-    color: $color-gold;
-  }
+    &::before {
+      content: "—";
+      left: 1.1em;
+      top: 1em;
+      position: absolute;
+      color: $color-gold;
+    }
+    &::after {
+      content: "⟶";
+      bottom: 1em;
+      right: 1em;
+      position: absolute;
 
-  &__title::after{
-    content: "⟶";
-    bottom: 1em;
-    right: 1em;
-    position: absolute;
-    
-    font-size: $font-size-2;
-    color: $color-gold;
+      font-size: $font-size-2;
+      color: $color-gold;
+    }
   }
-
 }
 
-.footer{
+.footer {
+  @include section();
+
   background-image: $theme-bg;
   padding: 3em;
   color: $color-white;
 
-  &__title{
+  &__title {
     font-size: $font-size-5;
     font-weight: bold;
-    margin-bottom: 1em;
   }
 
-  &__content{
+  &__content {
     margin-bottom: 1em;
 
-    &__info{
-      margin-top: .5em;
+    &__info {
+      margin-top: 0.5em;
     }
   }
 }
 
-@media screen and (max-width: 450px){
-  .species-item__latin {
+@media screen and (max-width: 450px) {
+  .species-item__latin,
+  .hero__latin {
     visibility: hidden;
   }
 }
 
-@media screen and (max-width: 900px){
-  .species-item{
-    &__footer{
-      flex-direction: column;
-      align-items: center;
+@media screen and (min-width: 600px) {
+  .life {
+    &__list {
+      grid-template-columns: 1fr 1fr;
     }
   }
 }
 
-@media screen and (min-width: 1300px) and (max-width: 1749px){
-  .species-item{
-    &__footer{
-      flex-direction: column;
-      align-items: center;
-    }
+@media screen and (min-width: 800px) {
+  .hero__line::before, .hero__line::after{
+    height: 10px;
   }
-}
-
-
-@media screen and (min-width: 800px){
-  .species-item{
+  .species-item {
     flex-basis: 600px;
-    &__img{
+    max-height: 300px;
+    max-width: 1000px;
+    &__img {
       width: 50%;
       max-width: 400px;
       height: 100%;
-
     }
   }
 }
-
-@media screen and (min-width: 900px) and (max-width: 1299px) and (min-width:1749px){
-  .species-item{
-    &__footer{
-      &__info::after{
-        content: "•";
-        margin: 1em;
-        color: $color-gold;
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 1750px){
-  .species-item{
-    &__img{
-      max-width: 320px;
-    }
-  }
-}
-
-@media screen and (min-width:600px){
-
-.species-item{
-  &__list{
+@media screen and (min-width: 1200px) {
+  .species__list{
     flex-direction: column;
   }
+  .species-item{
+    flex-direction: row;
+    
+  }
+  
 }
 
-  .life {
-    &__list{
-      grid-template-columns: 1fr 1fr;
+@media screen and (min-width: 900px) and (max-width: 1299px) {
+  .species-item__footer {
+    flex-direction: row;
+
+    &__info:not(:last-child) p::after {
+      content: "•";
+      margin: 1em;
+      color: $color-gold;
+    }
+  }
+}
+
+@media screen and (min-width: 1749px) {
+  .species-item__footer {
+    flex-direction: row;
+    &__info:not(:last-child) p::after {
+      content: "•";
+      margin: 1em;
+      color: $color-gold;
+    }
+  }
+}
+
+@media screen and (mind-width: 1750px) {
+  .species-item {
+    &__img {
+      width: 50%;
+      max-width: 320px;
+      //100%;
     }
   }
 }
